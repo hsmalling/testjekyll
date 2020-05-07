@@ -37,7 +37,7 @@
 
         const  form = document.forms['submit-to-google-sheet']
         form.elements["comments"].value = $('#submit-your-message').text($('#submit-your-message').val()).html();
-        form.elements["name"].value = $('#submit-your-name').text($('#submit-your-name').val()).html();
+        form.elements["name"].value = $('#submit-your-name').text();
         // form.name.value = form.name.value.trim();
         // form.comments.value = form.comments.value.trim();
         // form.name.value = $.trim(form.name.value);
