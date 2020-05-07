@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col-md-6">
+            <form name="submit-to-google-sheet" id="condolenceForm">
+                <div class="form-group">
+                  <label for="submit-your-name">Your Name</label>
+                  <input class="form-control" type="text" id="submit-your-name" name="name" value="" size="30" maxlength="128" required>
+                </div>
+                <div class="form-group">
+                  <label for="submit-your-message">Your Message</label>
+                  <textarea id="submit-your-message" class="form-control" name="comments" cols="60" rows="5" required></textarea>
+                </div>
+                <div class="">
+                  <button type="submit" class="btn btn-danger" name="submitButton" style="background-color: #800022;">Submit</button>
+                </div>
+                <div class="success"></div>
+            </form>
+        </div>
+      </div>
+
+      <!-- <script src="https://wzrd.in/standalone/formdata-polyfill"></script>
+      <script src="https://wzrd.in/standalone/promise-polyfill@latest"></script>
+      <script src="https://wzrd.in/standalone/whatwg-fetch@latest"></script> -->
+      <script>
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyJ7R2nnbsf22ol0IJzNUiTZsr7hsvgJntnGFeUpW2RRCXCqHs/exec'
+        const  form = document.forms['submit-to-google-sheet']
+        // form.name.value = form.name.value.trim();
+        // form.comments.value = form.comments.value.trim();
+        // form.name.value = $.trim(form.name.value);
+        // form.name.comments = $.trim(form.comments.value);
+        // form.name.value = $(form.name.value).text();
+        // form.name.comments = $(form.comments.value).text();
+
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          if ($.trim(form.name.value) == '') {
+            form.name.focus();
+            return false;
+          } else if ($.trim(form.comments.value) == '') {
+            form.comments.focus();
+            return false;
+          }
+          // if ($.trim(form.name.value) == '') {
+          //   form.name.focus();
+          //   return false;
+          // } else if ($.trim(form.comments.value) == '') {
+          //   form.comments.focus();
+          //   return false;
+          // }
+
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            // .then($('.success').text("Thank You, Your Submission has been received"))
+            .then(form.reset())
+            .catch(error => console.error('Error!', error.message))
+        })
+
+      </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
