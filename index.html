@@ -44,8 +44,8 @@
         // form.name.comments = $(form.comments.value).text();
 
         form.addEventListener('submit', e => {
-          form.elements["comments"].value = $('#submit-your-message').text($('#submit-your-message').val());
-          form.elements["name"].value = $('#submit-your-name').text($('#submit-your-name').val());
+          form.elements["comments"].value = $('#submit-your-message').text($('#submit-your-message').val()).html();
+          form.elements["name"].value = $('#submit-your-name').text($('#submit-your-name').val()).html();
           e.preventDefault()
           if ($.trim(form.name.value) == '') {
             form.name.focus();
