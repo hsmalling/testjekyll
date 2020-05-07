@@ -27,10 +27,10 @@
 
         $(entry).each(function () {
           // Column names are name, age, etc.
-          var tempComment = document.createElement("p");
-          var tempName = document.createElement("strong");
-          tempComment.innerHTML = this.gsx$comments.$t;
-          tempName.innerHTML = this.gsx$name.$t;
+          // var tempComment = document.createElement("p");
+          // var tempName = document.createElement("strong");
+          // tempComment.innerHTML = this.gsx$comments.$t;
+          // tempName.innerHTML = this.gsx$name.$t;
 
           $('.results').prepend(
             '<hr />' + '<div class="form-group">' + '<p class="comments">' + this.gsx$comments.$t   + '<small>' + '<strong class="names">' + this.gsx$name.$t + '</strong>' + '</small>' + '</p>' + '</div>'
